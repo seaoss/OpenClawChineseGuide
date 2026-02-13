@@ -140,54 +140,75 @@ function initMobileMenu() {
     const nav = document.querySelector('.nav');
     const headerContent = document.querySelector('.header-content');
     
-    // 创建移动端汉堡菜单按钮
-    const menuButton = document.createElement('button');
-    menuButton.className = 'menu-toggle';
-    menuButton.setAttribute('aria-label', '打开菜单');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.innerHTML = '<span></span><span></span><span></span>';
+    // 仅在移动端创建汉堡菜单按钮
+    const mobileBreakpoint = 768;
     
-    headerContent.appendChild(menuButton);
-    
-    // 菜单切换功能
-    menuButton.addEventListener('click', function() {
-        const isActive = nav.classList.toggle('active');
-        menuButton.classList.toggle('active');
-        menuButton.setAttribute('aria-expanded', isActive);
-        menuButton.setAttribute('aria-label', isActive ? '关闭菜单' : '打开菜单');
-    });
-    
-    // 点击导航链接后关闭菜单
-    nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                nav.classList.remove('active');
-                menuButton.classList.remove('active');
-                menuButton.setAttribute('aria-expanded', 'false');
-                menuButton.setAttribute('aria-label', '打开菜单');
+    function createMobileMenu() {
+        // 检查是否已存在按钮
+        if (document.querySelector('.menu-toggle')) return;
+        
+        // 检查是否在移动端
+        if (window.innerWidth > mobileBreakpoint) return;
+        
+        // 创建移动端汉堡菜单按钮
+        const menuButton = document.createElement('button');
+        menuButton.className = 'menu-toggle';
+        menuButton.setAttribute('aria-label', '打开菜单');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.innerHTML = '<span></span><span></span><span></span>';
+        
+        headerContent.appendChild(menuButton);
+        
+        // 菜单切换功能
+        menuButton.addEventListener('click', function() {
+            const isActive = nav.classList.toggle('active');
+            menuButton.classList.toggle('active');
+            menuButton.setAttribute('aria-expanded', isActive);
+            menuButton.setAttribute('aria-label', isActive ? '关闭菜单' : '打开菜单');
+        });
+        
+        // 点击导航链接后关闭菜单
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= mobileBreakpoint) {
+                    nav.classList.remove('active');
+                    menuButton.classList.remove('active');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                    menuButton.setAttribute('aria-label', '打开菜单');
+                }
+            });
+        });
+        
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= mobileBreakpoint) {
+                if (!nav.contains(e.target) && !menuButton.contains(e.target)) {
+                    nav.classList.remove('active');
+                    menuButton.classList.remove('active');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                    menuButton.setAttribute('aria-label', '打开菜单');
+                }
             }
         });
-    });
+    }
     
-    // 点击页面其他地方关闭菜单
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
-            if (!nav.contains(e.target) && !menuButton.contains(e.target)) {
-                nav.classList.remove('active');
-                menuButton.classList.remove('active');
-                menuButton.setAttribute('aria-expanded', 'false');
-                menuButton.setAttribute('aria-label', '打开菜单');
-            }
-        }
-    });
-    
-    // 窗口大小改变时重置菜单状态
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
+    function removeMobileMenu() {
+        const menuButton = document.querySelector('.menu-toggle');
+        if (menuButton && window.innerWidth > mobileBreakpoint) {
+            menuButton.remove();
             nav.classList.remove('active');
-            menuButton.classList.remove('active');
-            menuButton.setAttribute('aria-expanded', 'false');
-            menuButton.setAttribute('aria-label', '打开菜单');
+        }
+    }
+    
+    // 初始化时检查
+    createMobileMenu();
+    
+    // 监听窗口大小变化
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= mobileBreakpoint) {
+            createMobileMenu();
+        } else {
+            removeMobileMenu();
         }
     });
 }
