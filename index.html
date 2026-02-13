@@ -3,37 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw 中文指南 - 跨平台消息网关</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- 核心SEO Meta标签 -->
+    <title>OpenClaw 中文指南 | 跨平台消息网关 - 快速开始、安装、配置文档</title>
+    <meta name="description" content="OpenClaw中文官方文档，提供详细的跨平台消息网关安装配置指南。支持WhatsApp、Telegram、Discord、iMessage等平台连接AI编程代理。包含快速开始、安全配置、故障排除等完整教程。">
+    <meta name="keywords" content="OpenClaw, 跨平台消息网关, WhatsApp bot, Telegram bot, Discord bot, AI编程代理, 消息推送, iMessage, Mattermost, Signal, 开源IM机器人, Docker部署">
+    <meta name="author" content="OpenClaw Community">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="baiduspider" content="index, follow">
+    
+    <!-- 规范链接 -->
+    <link rel="canonical" href="https://claw.seaoss.com/">
+    
+    <!-- OpenGraph 社交分享优化 -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://claw.seaoss.com/">
+    <meta property="og:title" content="OpenClaw 中文指南 | 跨平台消息网关">
+    <meta property="og:description" content="OpenClaw中文官方文档，提供详细的跨平台消息网关安装配置指南。支持WhatsApp、Telegram、Discord等平台连接AI编程代理。">
+    <meta property="og:image" content="https://claw.seaoss.com/og-image.png">
+    <meta property="og:site_name" content="OpenClaw中文指南">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OpenClaw 中文指南 | 跨平台消息网关">
+    <meta name="twitter:description" content="OpenClaw中文官方文档，提供详细的跨平台消息网关安装配置指南。">
+    <meta name="twitter:image" content="https://claw.seaoss.com/og-image.png">
+    
+    <!-- 结构化数据 - Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "OpenClaw中文指南",
+      "url": "https://claw.seaoss.com/",
+      "description": "OpenClaw跨平台消息网关中文文档，提供详细的安装配置指南",
+      "publisher": {
+        "@type": "Organization",
+        "name": "OpenClaw Community"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://claw.seaoss.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <!-- 结构化数据 - TechArticle -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "OpenClaw 跨平台消息网关中文文档",
+      "description": "详细的OpenClaw安装配置指南，包含快速开始、安全配置、频道集成等完整教程",
+      "keywords": "OpenClaw, 消息网关, WhatsApp bot, Telegram bot, AI代理",
+      "author": {
+        "@type": "Organization",
+        "name": "OpenClaw Community"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "OpenClaw Community",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://claw.seaoss.com/og-image.png"
+        }
+      },
+      "datePublished": "2026-02-13",
+      "dateModified": "2026-02-13",
+      "proficiencyLevel": "Intermediate",
+      "about": {
+        "@type": "Thing",
+        "name": "OpenClaw",
+        "description": "跨平台消息网关，支持连接AI编程代理到多种消息平台"
+      }
+    }
+    </script>
+    
+    <!-- 结构化数据 - FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "OpenClaw是什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw是一个跨平台消息网关，支持将AI编程代理连接到WhatsApp、Telegram、Discord、iMessage等多种消息平台。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClaw支持哪些平台？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw支持WhatsApp、Telegram、Discord、iMessage、Mattermost、Signal等多种即时通讯平台。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何安装OpenClaw？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "使用npm或pnpm全局安装：npm install -g openclaw@latest，然后运行openclaw onboard --install-daemon进行配置。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClaw需要什么运行环境？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw需要Node.js >= 22版本，推荐使用Node运行时（不建议使用Bun）。"
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- 预连接和预加载 -->
+    <link rel="dns-prefetch" href="https://claw.seaoss.com">
+    <link rel="preconnect" href="https://claw.seaoss.com">
+    
+    <!-- 站点图标 -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+    
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+    
+    <!-- 性能优化：关键CSS内联 -->
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); }
+    </style>
 </head>
 <body>
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-                <a href="/" class="logo">
-                    <span class="logo-icon">🦞</span>
+                <a href="/" class="logo" aria-label="OpenClaw中文指南首页">
+                    <span class="logo-icon" aria-hidden="true">🦞</span>
                     <span class="logo-text">OpenClaw 中文指南</span>
                 </a>
-                <nav class="nav">
+                <nav class="nav" role="navigation" aria-label="主导航">
                     <a href="#introduction">简介</a>
                     <a href="#getting-started">快速开始</a>
                     <a href="#installation">安装</a>
                     <a href="#configuration">配置</a>
                     <a href="#channels">频道</a>
                     <a href="#security">安全</a>
-                    <a href="https://docs.openclaw.ai" target="_blank" class="external-link">官方文档 →</a>
+                    <a href="https://docs.openclaw.ai" target="_blank" rel="noopener noreferrer external">官方文档 →</a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <main>
+    <main role="main" id="main-content">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" id="introduction" aria-labelledby="hero-title">
             <div class="container">
                 <div class="hero-content">
-                    <h1>OpenClaw 🦞</h1>
+                    <h1 id="hero-title">OpenClaw 🦞</h1>
                     <p class="hero-subtitle">跨平台消息网关 - 连接 AI 编程代理到你的消息应用</p>
                     <p class="hero-description">
                         通过 WhatsApp、Telegram、Discord、iMessage 等平台与 AI 代理对话。支持 Any OS + 多种消息平台连接 AI 编程代理。
@@ -42,21 +176,21 @@
                         <a href="#getting-started" class="btn btn-primary">快速开始</a>
                         <a href="#installation" class="btn btn-secondary">安装指南</a>
                     </div>
-                    <div class="hero-features">
-                        <div class="feature">
-                            <span class="feature-icon">💬</span>
+                    <div class="hero-features" role="list" aria-label="功能特点">
+                        <div class="feature" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">💬</span>
                             <span>多平台支持</span>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">🤖</span>
+                        <div class="feature" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">🤖</span>
                             <span>AI 集成</span>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">🔒</span>
+                        <div class="feature" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">🔒</span>
                             <span>安全可靠</span>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">⚡</span>
+                        <div class="feature" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">⚡</span>
                             <span>实时响应</span>
                         </div>
                     </div>
@@ -65,54 +199,54 @@
         </section>
 
         <!-- Supported Platforms -->
-        <section class="section platforms-section">
+        <section class="section platforms-section" aria-labelledby="platforms-title">
             <div class="container">
-                <h2>支持的平台</h2>
+                <h2 id="platforms-title">支持的平台</h2>
                 <p class="section-description">OpenClaw 支持多种即时通讯平台，你可以选择自己常用的平台来与 AI 代理交互</p>
-                <div class="platforms-grid">
-                    <div class="platform-card">
-                        <div class="platform-icon">📱</div>
+                <div class="platforms-grid" role="list">
+                    <article class="platform-card" role="listitem">
+                        <div class="platform-icon" aria-hidden="true">📱</div>
                         <h3>WhatsApp</h3>
                         <p>通过 Baileys 实现 WhatsApp Web 协议，支持 QR 码登录</p>
-                    </div>
-                    <div class="platform-card">
-                        <div class="platform-icon">✈️</div>
+                    </article>
+                    <article class="platform-card" role="listitem">
+                        <div class="platform-icon" aria-hidden="true">✈️</div>
                         <h3>Telegram</h3>
                         <p>通过 grammY 支持 Bot API，支持 DM 和群组</p>
-                    </div>
-                    <div class="platform-card">
-                        <div class="platform-icon">🎮</div>
+                    </article>
+                    <article class="platform-card" role="listitem">
+                        <div class="platform-icon" aria-hidden="true">🎮</div>
                         <h3>Discord</h3>
                         <p>通过 discord.js 支持 DM 和频道消息</p>
-                    </div>
-                    <div class="platform-card">
-                        <div class="platform-icon">🍎</div>
+                    </article>
+                    <article class="platform-card" role="listitem">
+                        <div class="platform-icon" aria-hidden="true">🍎</div>
                         <h3>iMessage</h3>
                         <p>通过 BlueBubbles macOS 服务器支持</p>
-                    </div>
-                    <div class="platform-card">
-                        <div class="platform-icon">💬</div>
+                    </article>
+                    <article class="platform-card" role="listitem">
+                        <div class="platform-icon" aria-hidden="true">💬</div>
                         <h3>Mattermost</h3>
                         <p>插件方式支持，支持 Bot token 和 WebSocket</p>
-                    </div>
-                    <div class="platform-card">
-                        <div class="platform-icon">�_signal</div>
+                    </article>
+                    <article class="platform-card" role="listitem">
+                        <div class="platform-icon" aria-hidden="true">🔔</div>
                         <h3>Signal</h3>
                         <p>通过 signal-cli 支持隐私优先的消息</p>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Getting Started -->
-        <section id="getting-started" class="section getting-started-section">
+        <section id="getting-started" class="section getting-started-section" aria-labelledby="getting-started-title">
             <div class="container">
-                <h2>快速开始</h2>
+                <h2 id="getting-started-title">快速开始</h2>
                 <p class="section-description">从零开始，最快的方式在 5 分钟内完成设置并与 AI 代理对话</p>
                 
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
+                <nav class="steps" aria-label="快速开始步骤">
+                    <article class="step">
+                        <div class="step-number" aria-hidden="true">1</div>
                         <div class="step-content">
                             <h3>安装 CLI</h3>
                             <p>使用 npm 或 pnpm 全局安装 OpenClaw CLI：</p>
@@ -121,11 +255,11 @@
 pnpm add -g openclaw@latest</code></pre>
                             <p class="note">注意：需要 Node.js >= 22</p>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="step">
-                        <div class="step-number">2</div>
-<div class="step-content">
+                    <article class="step">
+                        <div class="step-number" aria-hidden="true">2</div>
+                        <div class="step-content">
                             <h3>运行引导向导</h3>
                             <p>使用引导向导配置你的 OpenClaw 环境（推荐）：</p>
                             <pre><code>openclaw onboard --install-daemon</code></pre>
@@ -138,10 +272,10 @@ pnpm add -g openclaw@latest</code></pre>
                                 <li>后台服务安装</li>
                             </ul>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="step">
-                        <div class="step-number">3</div>
+                    <article class="step">
+                        <div class="step-number" aria-hidden="true">3</div>
                         <div class="step-content">
                             <h3>启动 Gateway</h3>
                             <p>如果你没有在向导中启动 Gateway，可以手动启动：</p>
@@ -153,10 +287,10 @@ pnpm add -g openclaw@latest</code></pre>
                                 <li>Canvas 文件服务器：<code>http://:18793</code></li>
                             </ul>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="step">
-                        <div class="step-number">4</div>
+                    <article class="step">
+                        <div class="step-number" aria-hidden="true">4</div>
                         <div class="step-content">
                             <h3>登录消息频道</h3>
                             <p>登录你想使用的消息平台：</p>
@@ -168,10 +302,10 @@ pnpm add -g openclaw@latest</code></pre>
                                 <li><strong>Discord</strong>：需要 Bot Token</li>
                             </ul>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="step">
-                        <div class="step-number">5</div>
+                    <article class="step">
+                        <div class="step-number" aria-hidden="true">5</div>
                         <div class="step-content">
                             <h3>开始对话</h3>
                             <p>打开控制面板开始聊天：</p>
@@ -180,37 +314,37 @@ pnpm add -g openclaw@latest</code></pre>
                             <p>发送测试消息：</p>
                             <pre><code>openclaw message send --target +15555550123 --message "你好 from OpenClaw"</code></pre>
                         </div>
-                    </div>
-                </div>
+                    </article>
+                </nav>
             </div>
         </section>
 
         <!-- Installation -->
-        <section id="installation" class="section installation-section">
+        <section id="installation" class="section installation-section" aria-labelledby="installation-title">
             <div class="container">
-                <h2>安装指南</h2>
+                <h2 id="installation-title">安装指南</h2>
                 
                 <div class="installation-methods">
-                    <div class="method">
+                    <article class="method">
                         <h3>Linux/macOS 安装</h3>
                         <pre><code>curl -fsSL https://openclaw.ai/install.sh | bash</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="method">
+                    <article class="method">
                         <h3>Windows 安装 (PowerShell)</h3>
                         <pre><code>iwr -useb https://openclaw.ai/install.ps1 | iex</code></pre>
                         <p class="note">注意：Windows 推荐使用 WSL2</p>
-                    </div>
+                    </article>
                     
-                    <div class="method">
+                    <article class="method">
                         <h3>npm 全局安装</h3>
                         <pre><code>npm install -g openclaw@latest</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="method">
+                    <article class="method">
                         <h3>pnpm 全局安装</h3>
                         <pre><code>pnpm add -g openclaw@latest</code></pre>
-                    </div>
+                    </article>
                 </div>
 
                 <div class="requirements">
@@ -239,17 +373,17 @@ openclaw logs --follow</code></pre>
         </section>
 
         <!-- Configuration -->
-        <section id="configuration" class="section configuration-section">
+        <section id="configuration" class="section configuration-section" aria-labelledby="configuration-title">
             <div class="container">
-                <h2>配置指南</h2>
+                <h2 id="configuration-title">配置指南</h2>
                 
                 <div class="config-content">
-                    <div class="config-file">
+                    <article class="config-file">
                         <h3>配置文件位置</h3>
                         <p>配置文件位于：<code>~/.openclaw/openclaw.json</code></p>
-                    </div>
+                    </article>
                     
-                    <div class="config-example">
+                    <article class="config-example">
                         <h3>配置示例</h3>
                         <pre><code>{
   "channels": {
@@ -273,9 +407,9 @@ openclaw logs --follow</code></pre>
     }
   }
 }</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="config-commands">
+                    <article class="config-commands">
                         <h3>配置命令</h3>
                         <pre><code># 重新配置
 openclaw configure
@@ -288,18 +422,18 @@ openclaw configure --section web
 
 # 修复无效配置
 openclaw doctor</code></pre>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Architecture -->
-        <section class="section architecture-section">
+        <section class="section architecture-section" aria-labelledby="architecture-title">
             <div class="container">
-                <h2>工作原理</h2>
+                <h2 id="architecture-title">工作原理</h2>
                 <p class="section-description">了解 OpenClaw 的架构和组件如何协同工作</p>
                 
-                <div class="architecture-diagram">
+                <div class="architecture-diagram" role="img" aria-label="OpenClaw架构图">
                     <div class="arch-layer">
                         <h4>消息平台</h4>
                         <div class="arch-items">
@@ -309,14 +443,14 @@ openclaw doctor</code></pre>
                             <span>iMessage</span>
                         </div>
                     </div>
-                    <div class="arch-arrow">↓</div>
+                    <div class="arch-arrow" aria-hidden="true">↓</div>
                     <div class="arch-layer gateway">
                         <h4>Gateway (核心)</h4>
                         <p>单一长期运行的进程</p>
                         <p>拥有通道连接和 WebSocket 控制平面</p>
                         <p>端口: 18789 (WS) / 18793 (HTTP)</p>
                     </div>
-                    <div class="arch-arrow">↓</div>
+                    <div class="arch-arrow" aria-hidden="true">↓</div>
                     <div class="arch-layer">
                         <h4>客户端</h4>
                         <div class="arch-items">
@@ -342,13 +476,13 @@ openclaw doctor</code></pre>
         </section>
 
         <!-- Channels -->
-        <section id="channels" class="section channels-section">
+        <section id="channels" class="section channels-section" aria-labelledby="channels-title">
             <div class="container">
-                <h2>频道配置</h2>
+                <h2 id="channels-title">频道配置</h2>
                 <p class="section-description">详细了解各个消息平台的配置方法</p>
                 
                 <div class="channel-details">
-                    <div class="channel-detail">
+                    <article class="channel-detail">
                         <h3>📱 WhatsApp</h3>
                         <p>使用 Baileys 实现 WhatsApp Web 协议，需要 QR 码配对。</p>
                         <pre><code># 登录 WhatsApp
@@ -361,9 +495,9 @@ openclaw channels login</code></pre>
     }
   }
 }</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="channel-detail">
+                    <article class="channel-detail">
                         <h3>✈️ Telegram</h3>
                         <p>通过 grammY 支持 Bot API，需要 Bot Token。</p>
                         <p>创建 Bot：</p>
@@ -381,9 +515,9 @@ openclaw channels login</code></pre>
   }
 }</code></pre>
                         <p class="note">注意：你的第一个 DM 会返回配对码，需要批准后才能回复</p>
-                    </div>
+                    </article>
                     
-                    <div class="channel-detail">
+                    <article class="channel-detail">
                         <h3>🎮 Discord</h3>
                         <p>通过 discord.js 支持，需要 Bot Token。</p>
                         <p>创建 Bot：</p>
@@ -401,9 +535,9 @@ openclaw channels login</code></pre>
     }
   }
 }</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="channel-detail">
+                    <article class="channel-detail">
                         <h3>🍎 iMessage (BlueBubbles)</h3>
                         <p>推荐使用 BlueBubbles macOS 服务器，支持完整功能。</p>
                         <p>要求：</p>
@@ -422,68 +556,68 @@ openclaw channels login</code></pre>
     }
   }
 }</code></pre>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Features -->
-        <section class="section features-section">
+        <section class="section features-section" aria-labelledby="features-title">
             <div class="container">
-                <h2>高级功能</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
+                <h2 id="features-title">高级功能</h2>
+                <div class="features-grid" role="list">
+                    <article class="feature-item" role="listitem">
                         <h3>流式处理</h3>
                         <p>块流式输出 + Telegram 草稿流式</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>多代理路由</h3>
                         <p>隔离的代理工作区</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>订阅认证</h3>
                         <p>Anthropic Claude + OpenAI ChatGPT/Codex OAuth</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>会话管理</h3>
                         <p>直接聊天合并为共享 main 会话</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>群组支持</h3>
                         <p>@提及激活，支持切换 /activation always|mention</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>媒体支持</h3>
                         <p>图像、音频、文档收发</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>语音笔记</h3>
                         <p>可选转录钩子</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>macOS 应用</h3>
                         <p>本地 UI + 菜单栏伴侣</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>iOS 节点</h3>
                         <p>配对并暴露 Canvas 表面</p>
-                    </div>
-                    <div class="feature-item">
+                    </article>
+                    <article class="feature-item" role="listitem">
                         <h3>Android 节点</h3>
                         <p>配对并暴露 Canvas + Chat + Camera</p>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Security -->
-        <section id="security" class="section security-section">
+        <section id="security" class="section security-section" aria-labelledby="security-title">
             <div class="container">
-                <h2>安全配置</h2>
+                <h2 id="security-title">安全配置</h2>
                 <p class="section-description">了解如何保护你的 OpenClaw 部署</p>
                 
                 <div class="security-content">
-                    <div class="security-audit">
+                    <article class="security-audit">
                         <h3>安全审计</h3>
                         <pre><code># 运行安全审计
 openclaw security audit
@@ -496,9 +630,9 @@ openclaw security audit --fix</code></pre>
                             <li>网络暴露：Gateway 绑定/认证、Tailscale</li>
                             <li>本地磁盘安全：权限、配置包含</li>
                         </ul>
-                    </div>
+                    </article>
                     
-                    <div class="dm-policy">
+                    <article class="dm-policy">
                         <h3>DM 访问策略</h3>
                         <p>支持四种策略：</p>
                         <ul>
@@ -514,9 +648,9 @@ openclaw security audit --fix</code></pre>
     }
   }
 }</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="group-policy">
+                    <article class="group-policy">
                         <h3>组策略</h3>
                         <pre><code>{
   "channels": {
@@ -529,11 +663,11 @@ openclaw security audit --fix</code></pre>
     }
   }
 }</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="security-best-practices">
+                    <article class="security-best-practices">
                         <h3>安全最佳实践</h3>
-<ol>
+                        <ol>
                             <li><strong>身份优先</strong>：决定谁可以和机器人对话（DM 配对/允许列表）</li>
                             <li><strong>范围其次</strong>：决定机器人可以在哪里操作</li>
                             <li><strong>模型最后</strong>：假设模型可被操纵，设计时让操纵有有限的影响范围</li>
@@ -541,18 +675,18 @@ openclaw security audit --fix</code></pre>
                             <li><strong>启用沙箱</strong>：限制代理的操作范围</li>
                             <li><strong>保持更新</strong>：定期更新 OpenClaw 到最新版本</li>
                         </ol>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Troubleshooting -->
-        <section class="section troubleshooting-section">
+        <section class="section troubleshooting-section" aria-labelledby="troubleshooting-title">
             <div class="container">
-                <h2>故障排除</h2>
+                <h2 id="troubleshooting-title">故障排除</h2>
                 
                 <div class="troubleshooting-content">
-                    <div class="troubles">
+                    <article class="troubles">
                         <h3>常见问题</h3>
                         
                         <div class="trouble-item">
@@ -580,80 +714,105 @@ openclaw pairing approve whatsapp &lt;message-id&gt;</code></pre>
 openclaw health
 openclaw security audit --deep</code></pre>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- CLI Reference -->
-        <section class="section cli-section">
+        <section class="section cli-section" aria-labelledby="cli-title">
             <div class="container">
-                <h2>命令参考</h2>
+                <h2 id="cli-title">命令参考</h2>
                 
                 <div class="cli-commands">
-                    <div class="cli-group">
+                    <article class="cli-group">
                         <h3>Gateway 管理</h3>
                         <pre><code>openclaw gateway --port 18789         # 启动 Gateway
 openclaw gateway status                  # 检查状态
 openclaw gateway stop                    # 停止
 openclaw gateway restart                 # 重启
 openclaw gateway install                 # 安装服务</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="cli-group">
+                    <article class="cli-group">
                         <h3>消息发送</h3>
                         <pre><code>openclaw message send --target +15555550123 --message "Hello"
 openclaw agent --message "Hi" --to &lt;target&gt;</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="cli-group">
+                    <article class="cli-group">
                         <h3>频道管理</h3>
                         <pre><code>openclaw channels login              # 登录频道
 openclaw channels list                  # 列出频道
 openclaw pairing list                   # 配对列表
 openclaw pairing approve &lt;channel&gt; &lt;id&gt; # 批准配对</code></pre>
-                    </div>
+                    </article>
                     
-                    <div class="cli-group">
+                    <article class="cli-group">
                         <h3>系统信息</h3>
                         <pre><code>openclaw status                       # 状态
 openclaw health                         # 健康检查
 openclaw security audit                 # 安全审计
 openclaw doctor                         # 修复配置</code></pre>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h4>关于 OpenClaw</h4>
-                        <p>OpenClaw 是一个跨平台消息网关，支持将 AI 编程代理连接到多种消息平台。</p>
-                        <p class="copyright">名称由来：OpenClaw = CLAW + TARDIS — 因为每只太空龙虾都需要一台时间机器 🦞</p>
-                    </div>
-                    <div class="footer-section">
-                        <h4>相关链接</h4>
-                        <ul>
-                            <li><a href="https://github.com/openclaw/openclaw" target="_blank">GitHub</a></li>
-                            <li><a href="https://github.com/openclaw/openclaw/releases" target="_blank">Releases</a></li>
-                            <li><a href="https://docs.openclaw.ai" target="_blank">官方文档</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>许可证</h4>
-                        <p>MIT — 像海洋中的龙虾一样自由 🦞</p>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>本中文指南由 OpenClaw 社区整理，欢迎贡献翻译。</p>
-                </div>
-            </div>
-        </footer>
     </main>
 
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于 OpenClaw</h4>
+                    <p>OpenClaw 是一个跨平台消息网关，支持将 AI 编程代理连接到多种消息平台。</p>
+                    <p class="copyright">名称由来：OpenClaw = CLAW + TARDIS — 因为每只太空龙虾都需要一台时间机器 🦞</p>
+                </div>
+                <div class="footer-section">
+                    <h4>相关链接</h4>
+                    <ul>
+                        <li><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://github.com/openclaw/openclaw/releases" target="_blank" rel="noopener noreferrer">Releases</a></li>
+                        <li><a href="https://docs.openclaw.ai" target="_blank" rel="noopener noreferrer">官方文档</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>许可证</h4>
+                    <p>MIT — 像海洋中的龙虾一样自由 🦞</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>本中文指南由 OpenClaw 社区整理，欢迎贡献翻译。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 延迟加载非关键JavaScript -->
+    <script src="script.js" defer></script>
+    
+    <!-- 结构化数据 - Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://claw.seaoss.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "快速开始",
+        "item": "https://claw.seaoss.com/#getting-started"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "安装指南",
+        "item": "https://claw.seaoss.com/#installation"
+      }]
+    }
+    </script>
 </body>
 </html>

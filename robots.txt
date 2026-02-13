@@ -1,0 +1,48 @@
+# robots.txt for OpenClaw 中文指南
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://khmehl6apyq3.space.minimaxi.com/sitemap.xml
+
+# Crawl-delay (optional, for respectful crawling)
+Crawl-delay: 1
+
+# Disallow admin/private directories (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Allow static assets
+Allow: /styles.css
+Allow: /script.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+Allow: /*.ico
+
+# Specific crawler rules
+User-agent: Baiduspider
+Allow: /
+Disallow: /admin/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Sogou web spider
+Allow: /
+Disallow: /admin/
+
+User-agent: 360Spider
+Allow: /
+Disallow: /admin/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /admin/
