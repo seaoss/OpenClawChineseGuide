@@ -138,106 +138,57 @@ function initCodeCopy() {
  */
 function initMobileMenu() {
     const nav = document.querySelector('.nav');
-    const header = document.querySelector('.header');
+    const headerContent = document.querySelector('.header-content');
     
-    // 创建移动端菜单按钮
+    // 创建移动端汉堡菜单按钮
     const menuButton = document.createElement('button');
-    menuButton.className = 'mobile-menu-button';
-    menuButton.innerHTML = '&#9776;'; // 汉堡菜单图标
-    menuButton.setAttribute('aria-label', '菜单');
+    menuButton.className = 'menu-toggle';
+    menuButton.setAttribute('aria-label', '打开菜单');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.innerHTML = '<span></span><span></span><span></span>';
     
-    // 添加移动端样式
-    const style = document.createElement('style');
-    style.textContent = `
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-primary);
-            padding: 0.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-button {
-                display: block;
-            }
-            
-            .nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 1rem;
-                border-bottom: 1px solid var(--border-color);
-                box-shadow: var(--shadow-md);
-            }
-            
-            .nav.active {
-                display: flex;
-            }
-            
-            .nav a {
-                padding: 0.75rem 0;
-                border-bottom: 1px solid var(--border-color);
-            }
-            
-            .nav a:last-child {
-                border-bottom: none;
-            }
-        }
-        
-        .copy-button {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            color: #e2e8f0;
-            padding: 0.25rem 0.5rem;
-            cursor: pointer;
-            font-size: 0.875rem;
-            opacity: 0;
-            transition: opacity 0.2s, background 0.2s;
-        }
-        
-        .code-wrapper:hover .copy-button {
-            opacity: 1;
-        }
-        
-        .copy-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .copy-button.copied {
-            background: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-        
-        .code-wrapper {
-            position: relative;
-        }
-    `;
-    document.head.appendChild(style);
+    headerContent.appendChild(menuButton);
     
-    header.querySelector('.header-content').appendChild(menuButton);
-    
+    // 菜单切换功能
     menuButton.addEventListener('click', function() {
-        nav.classList.toggle('active');
+        const isActive = nav.classList.toggle('active');
+        menuButton.classList.toggle('active');
+        menuButton.setAttribute('aria-expanded', isActive);
+        menuButton.setAttribute('aria-label', isActive ? '关闭菜单' : '打开菜单');
     });
     
-    // 点击链接后关闭菜单
+    // 点击导航链接后关闭菜单
     nav.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
                 nav.classList.remove('active');
+                menuButton.classList.remove('active');
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', '打开菜单');
             }
         });
+    });
+    
+    // 点击页面其他地方关闭菜单
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            if (!nav.contains(e.target) && !menuButton.contains(e.target)) {
+                nav.classList.remove('active');
+                menuButton.classList.remove('active');
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', '打开菜单');
+            }
+        }
+    });
+    
+    // 窗口大小改变时重置菜单状态
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            nav.classList.remove('active');
+            menuButton.classList.remove('active');
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuButton.setAttribute('aria-label', '打开菜单');
+        }
     });
 }
 

@@ -21,6 +21,11 @@
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     --transition: all 0.3s ease;
+    /* 响应式变量 */
+    --container-padding: 1.5rem;
+    --section-padding: 5rem;
+    --h1-size: 3.5rem;
+    --h2-size: 2.25rem;
 }
 
 /* 重置样式 */
@@ -32,6 +37,7 @@
 
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -40,13 +46,35 @@ body {
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-primary);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* 防止水平溢出 */
+html, body {
+    overflow-x: hidden;
+}
+
+/* 图片自适应 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 触摸目标优化 */
+a, button {
+    min-height: 44px;
+    min-width: 44px;
 }
 
 /* 容器 */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--container-padding);
+    width: 100%;
 }
 
 /* 头部 */
@@ -60,13 +88,16 @@ body {
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border-color);
     transition: var(--transition);
+    height: auto;
+    min-height: 60px;
 }
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
+    gap: 1rem;
 }
 
 .logo {
@@ -123,7 +154,7 @@ main {
 
 /* Hero 区域 */
 .hero {
-    padding: 6rem 0;
+    padding: var(--section-padding) 0;
     background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     text-align: center;
     position: relative;
@@ -148,16 +179,18 @@ main {
     z-index: 1;
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: var(--h1-size);
     font-weight: 800;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    line-height: 1.2;
 }
 
 .hero-subtitle {
@@ -165,6 +198,7 @@ main {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 1rem;
+    line-height: 1.4;
 }
 
 .hero-description {
@@ -174,6 +208,7 @@ main {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
 }
 
 .hero-buttons {
@@ -181,12 +216,14 @@ main {
     gap: 1rem;
     justify-content: center;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
+    justify-content: center;
+    padding: 0.875rem 1.75rem;
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
@@ -194,6 +231,7 @@ main {
     transition: var(--transition);
     cursor: pointer;
     border: none;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -241,15 +279,18 @@ main {
 
 /* 章节通用样式 */
 .section {
-    padding: 5rem 0;
+    padding: var(--section-padding) 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .section h2 {
-    font-size: 2.25rem;
+    font-size: var(--h2-size);
     font-weight: 700;
     text-align: center;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    line-height: 1.3;
 }
 
 .section-description {
@@ -258,6 +299,8 @@ main {
     font-size: 1.125rem;
     max-width: 700px;
     margin: 0 auto 3rem;
+    line-height: 1.6;
+    padding: 0 1rem;
 }
 
 /* 支持的平台 */
@@ -876,48 +919,192 @@ main {
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .header-content {
-        flex-direction: column;
-        gap: 1rem;
+        padding: 0.75rem 0;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+    }
+    
+    .logo-icon {
+        font-size: 1.75rem;
     }
     
     .nav {
+        gap: 1rem;
+    }
+    
+    .nav a {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+    }
+    
+    .header-content {
         flex-wrap: wrap;
+        padding: 0.625rem 0;
+        gap: 0;
+    }
+    
+    .logo {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .logo-icon {
+        font-size: 1.5rem;
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+    }
+    
+    /* 移动端导航 */
+    .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 0.5rem;
+        order: 3;
+    }
+    
+    .nav.active {
+        display: flex;
+    }
+    
+    .nav a {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.9375rem;
+        text-align: left;
+        border-radius: var(--radius-sm);
+        margin: 0.125rem 0;
+    }
+    
+    .nav a:hover {
+        background: var(--bg-secondary);
+    }
+    
+    /* 汉堡菜单 - 移动端显示 */
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column;
         justify-content: center;
-        gap: 0.75rem;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.625rem;
+        border-radius: 6px;
+        transition: background 0.2s;
+    }
+    
+    .menu-toggle:hover {
+        background: rgba(0,0,0,0.05);
+    }
+    
+    .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #1f2937;
+        margin: 2.5px 0;
+        border-radius: 1px;
+        transition: all 0.25s ease;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px);
+    }
+    
+    /* Hero 区域 */
+        padding: 5rem 0 3rem;
     }
     
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .hero-subtitle {
-        font-size: 1.25rem;
+        font-size: 1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9375rem;
     }
     
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 240px;
+        justify-content: center;
     }
     
     .hero-features {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.75rem;
+    }
+    
+    .feature {
+        font-size: 0.875rem;
+    }
+    
+    .section {
+        padding: 3rem 0;
     }
     
     .section h2 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+    }
+    
+    .section-description {
+        font-size: 0.9375rem;
+    }
+    
+    .platforms-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
     
     .step {
         flex-direction: column;
+        padding: 1.25rem;
     }
     
     .step-number {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 1rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.875rem;
+        flex-shrink: 0;
     }
     
     .arch-layer {
@@ -925,26 +1112,51 @@ main {
     }
     
     .arch-items {
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .arch-items span {
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 1rem;
+        padding: 0 0.875rem;
+    }
+    
+    .logo-text {
+        font-size: 0.9375rem;
+        max-width: 140px;
+    }
+    
+    .logo-icon {
+        font-size: 1.375rem;
     }
     
     .hero {
-        padding: 4rem 0;
+        padding: 4rem 0 2.5rem;
     }
     
     .hero h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9375rem;
+    }
+    
+    .hero-description {
+        font-size: 0.875rem;
     }
     
     .section {
-        padding: 3rem 0;
+        padding: 2.5rem 0;
+    }
+    
+    .section h2 {
+        font-size: 1.375rem;
     }
     
     .platforms-grid {
@@ -956,6 +1168,27 @@ main {
     }
     
     .cli-commands {
+        grid-template-columns: 1fr;
+    }
+    
+    .platform-card,
+    .method,
+    .feature-item,
+    .channel-detail,
+    .cli-group {
+        padding: 1rem;
+    }
+    
+    .step-content {
+        padding: 0;
+    }
+    
+    pre {
+        padding: 0.75rem;
+        font-size: 0.8125rem;
+    }
+    
+    .footer-content {
         grid-template-columns: 1fr;
     }
 }
@@ -1017,4 +1250,468 @@ pre code {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text-secondary);
+}
+
+/* ==================== 完整移动端响应式优化 ==================== */
+
+/* 移动端基础优化 */
+@media (max-width: 768px) {
+    /* 整体布局 */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;
+    }
+    
+    /* Header 优化 */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background: #ffffff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        min-height: 56px;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+    
+    .logo-icon {
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+    }
+    
+    /* 汉堡菜单 */
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.625rem;
+        border-radius: 6px;
+        transition: background 0.2s;
+        flex-shrink: 0;
+    }
+    
+    .menu-toggle:hover {
+        background: rgba(0,0,0,0.05);
+    }
+    
+    .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #1f2937;
+        margin: 2.5px 0;
+        border-radius: 1px;
+        transition: all 0.25s ease;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px);
+    }
+    
+    /* 导航菜单 */
+    .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 0.5rem;
+        border-top: 1px solid #e5e7eb;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+    
+    .nav.active {
+        display: flex;
+    }
+    
+    .nav a {
+        display: flex;
+        align-items: center;
+        padding: 0.875rem 1rem;
+        font-size: 1rem;
+        color: #374151;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.2s;
+        min-height: 48px;
+    }
+    
+    .nav a:hover {
+        background: #f3f4f6;
+        color: #6366f1;
+    }
+    
+    /* Hero 区域 */
+    .hero {
+        padding: 5rem 0 3rem;
+        min-height: auto;
+    }
+    
+    .hero-content {
+        padding: 0 0.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.0625rem;
+        line-height: 1.4;
+        margin-bottom: 0.625rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.625rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 260px;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9375rem;
+    }
+    
+    .hero-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .hero-features .feature {
+        font-size: 0.875rem;
+    }
+    
+    /* Section 通用 */
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .section h2 {
+        font-size: 1.625rem;
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+        padding: 0 0.5rem;
+    }
+    
+    .section-description {
+        font-size: 0.9375rem;
+        line-height: 1.5;
+        margin-bottom: 1.75rem;
+        padding: 0 1rem;
+    }
+    
+    /* 卡片网格 */
+    .platforms-grid,
+    .features-grid,
+    .installation-methods,
+    .cli-commands {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* 卡片 */
+    .platform-card,
+    .method,
+    .feature-item,
+    .channel-detail,
+    .cli-group,
+    .config-file,
+    .config-example,
+    .config-commands,
+    .security-audit,
+    .dm-policy,
+    .group-policy,
+    .security-best-practices {
+        padding: 1.25rem 1rem;
+    }
+    
+    /* 步骤 */
+    .step {
+        flex-direction: column;
+        padding: 1.25rem 1rem;
+        gap: 0.875rem;
+        margin-bottom: 1rem;
+    }
+    
+    .step-number {
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.9375rem;
+        flex-shrink: 0;
+    }
+    
+    .step-content h3 {
+        font-size: 1.0625rem;
+    }
+    
+    /* 架构图 */
+    .architecture-diagram {
+        padding: 0 0.25rem;
+    }
+    
+    .arch-layer {
+        padding: 1rem 0.75rem;
+    }
+    
+    .arch-layer h4 {
+        font-size: 0.9375rem;
+    }
+    
+    .arch-layer p {
+        font-size: 0.8125rem;
+    }
+    
+    .arch-items {
+        gap: 0.375rem;
+    }
+    
+    .arch-items span {
+        font-size: 0.6875rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .arch-arrow {
+        font-size: 1rem;
+    }
+    
+    .network-model {
+        padding: 1.25rem 1rem;
+    }
+    
+    /* 列表 */
+    .step-content ul,
+    .channel-detail ol,
+    .channel-detail ul,
+    .network-model ul,
+    .requirements ul,
+    .security-audit ul,
+    .dm-policy ul,
+    .security-best-practices ul {
+        padding-left: 1.25rem;
+        margin: 0.5rem 0;
+    }
+    
+    .step-content li,
+    .channel-detail li,
+    .network-model li,
+    .requirements li,
+    .security-audit li,
+    .dm-policy li,
+    .security-best-practices li {
+        font-size: 0.9375rem;
+        margin-bottom: 0.375rem;
+    }
+    
+    /* 代码块 */
+    pre {
+        padding: 0.875rem;
+        font-size: 0.8125rem;
+        border-radius: 6px;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+        white-space: pre;
+        word-wrap: normal;
+    }
+    
+    /* 故障排除 */
+    .troubles {
+        padding: 1.5rem 1rem;
+    }
+    
+    .trouble-item {
+        padding: 1rem;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 2rem 0 1.25rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-section {
+        padding: 0 0.5rem;
+    }
+    
+    .footer-section ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-section li {
+        margin-bottom: 0.375rem;
+    }
+    
+    .footer-section a {
+        display: inline-block;
+        padding: 0.5rem;
+    }
+    
+    .footer-bottom {
+        padding-top: 1.25rem;
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+    .container {
+        padding-left: 0.875rem;
+        padding-right: 0.875rem;
+    }
+    
+    .hero {
+        padding: 4.5rem 0 2.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.875rem;
+    }
+    
+    .hero-buttons .btn {
+        max-width: 100%;
+    }
+    
+    .section {
+        padding: 2.5rem 0;
+    }
+    
+    .section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-description {
+        font-size: 0.875rem;
+    }
+    
+    .platform-card h3,
+    .method h3,
+    .feature-item h3 {
+        font-size: 1rem;
+    }
+    
+    .platform-card p,
+    .method p,
+    .feature-item p {
+        font-size: 0.875rem;
+    }
+    
+    .step {
+        padding: 1rem 0.875rem;
+    }
+    
+    .step-content h3 {
+        font-size: 1rem;
+    }
+    
+    pre {
+        padding: 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .footer-section h4 {
+        font-size: 1rem;
+    }
+}
+
+/* 平板横屏优化 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero {
+        padding: 4rem 0 2.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+    
+    .platforms-grid,
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
 }
